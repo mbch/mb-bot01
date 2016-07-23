@@ -23,6 +23,17 @@ server.post('/api/messages', connector.listen());
 // Bots Dialogs
 //=========================================================
 
+/*
 bot.dialog('/', function (session) {
     session.send("Hello Switzerland");
 });
+*/
+
+bot.dialog('/', [
+    function (session) {
+        builder.Prompts.text(session, 'Hi! What is your name?');
+    },
+    function (session, results) {
+        session.send('Hello %s!', results.response);
+    }
+]);
